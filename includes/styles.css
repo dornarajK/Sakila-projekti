@@ -81,14 +81,8 @@ input:hover{
 
 #logo{
     height: 70px;
- 
-    
+}
 
-}
-button{
-    height: 100px;
-    width: 20px;
-}
 
 #osta{
 display: flex;
@@ -137,4 +131,15 @@ margin-right: 15vh;
 /* Optional: add border for better visibility */
 table, th, td {
     border: 1px solid black;
+}
+#elokuva{
+    display: flex;
+    margin: 20vh;
+}
+#film-table{
+display: flex;
+}
+.k{
+ -webkit-transform: scaleX(-1);
+   transform: scaleX(-1);  
 }
