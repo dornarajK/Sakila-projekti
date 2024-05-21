@@ -22,7 +22,9 @@ app.get('/', (req, res) => {
             res.status(500).send('Server error');
             return;
         }
-        res.render('index', { data: results });
+        res.render('index', { 
+            data: results
+         });
     });
 });
 
