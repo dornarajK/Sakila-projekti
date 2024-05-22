@@ -1,0 +1,11 @@
+<%- include('partials/header') %>
+
+<h1>Hakutulos</h1>
+<p>Löydettyjen elokuvien lukumäärä: <%= lukumaara %></p>
+<ul>
+    <% autot.forEach(function(auto) { %>
+        <li><%= auto.title %></li>
+    <% }); %>
+</ul>
+
+<%- include('partials/footer') %>
