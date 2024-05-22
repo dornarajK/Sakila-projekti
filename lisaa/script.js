@@ -10,7 +10,7 @@ function loadFilms() {
         .then(response => response.json())
         .then(data => {
             const table = document.getElementById('film-table');
-            table.innerHTML = ''; // Clear the table
+            table.innerHTML = ''; 
 
             data.forEach(film => {
                 const row = document.createElement('tr');
@@ -21,23 +21,23 @@ function loadFilms() {
                 table.appendChild(row);
             });
 
-            // Show/hide next/prev buttons based on offset
             const nextButton = document.getElementById('next');
             const prevButton = document.getElementById('prev');
             
             if (offset === 0) {
-                prevButton.style.display = 'none'; // Hide prev button if offset is 0
+                prevButton.style.display = 'none'; 
             } else {
-                prevButton.style.display = 'block'; // Show prev button if offset is not 0
+                prevButton.style.display = 'block'; 
             }
             
             if (data.length < limit) {
-                nextButton.style.display = 'none'; // Hide next button if there are no more films to load
+                nextButton.style.display = 'none';
             } else {
-                nextButton.style.display = 'block'; // Show next button if there are more films to load
+                nextButton.style.display = 'block'; 
             }
         })
         .catch(error => console.error('Error loading films:', error));
+       
 }
 
 function loadNext() {

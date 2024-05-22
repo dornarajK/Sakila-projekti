@@ -65,6 +65,10 @@ app.get('/yhteistidot', (req, res) => {
     res.render('yhteistidot', {});
 });
 
+app.post('/osta', (req, res) => {
+
+    res.render('osta', {});
+});
 app.listen(port, host, () => {
     console.log(`Server is running on http://${host}:${port}`);
 });

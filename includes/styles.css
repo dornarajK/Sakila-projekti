@@ -143,4 +143,14 @@ display: flex;
     transform: scaleX(-1);  
 }
 
-/* *elokuvat */
+/* *elokuvat  */
+
+/* osta sivuston muokaus */
+#osta-elokuva{
+
+   border:solid 3px #20aad8 ;
+   width: 50vh;
+   height: 30vh;
+    margin-left: 10vh;
+   
+}
