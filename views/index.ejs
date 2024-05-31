@@ -1,22 +1,39 @@
 <%- include('partials/header') %>
+<div id="osta">
+<form action="/osta" method="post" id="elokuvaForm">
+   <label for="ota"><h3> Mene maksamaan:</h3></label>
+    <button type="submit" value="ota" id="ota" class="custom-button">
+        <img alt="Submit" src="/img/car.png" class="custom-img">
+        <!-- <p>kärryssä on:</p> -->
+    </button>
+    
+    <div id="selectedFilms">
+        <!-- ?  valitut elokuvat lista-->
+    </div>
+</form>
+</div>
 
 <div id="tiedot">
     <div >
-        <img id="logo" src="/img/logo.png">
+        <img id="logo-kuva" src="/img/logo.png">
     </div>
-    <dir id="tiedot-text">
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sint exercitationem neque architecto adipisci quod velit molestias reiciendis pariatur unde ullam harum facere, dolorum repudiandae magni quae explicabo quidem atque consequuntur libero sapiente quasi. Non et eligendi omnis impedit, rem reprehenderit odit exercitationem qui! Dolore exercitationem nihil cum inventore debitis. Iure aperiam iusto quasi cumque ullam consequuntur nisi repellendus, quos optio, esse sunt corporis! Quae alias porro libero labore optio nemo quidem fuga magnam, quisquam dignissimos veritatis tenetur quia maiores commodi suscipit rerum quo assumenda illo natus voluptates non explicabo consequatur quod necessitatibus. Doloribus, debitis ex magnam sunt nisi quod reiciendis?</p>
-    </dir>
+    <div id="tiedot-text">
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sint exercitationem neque architecto adipisci quod velit molestias reiciendis pariatur unde ullam harum facere, dolorum repudiandae magni quae explicabo quidem atque consequuntur libero sapiente quasi. Non et eligendi omnis impedit, rem reprehenderit odit exercitationem qui! Dolore exercitationem nihil cum inventore debitis. Iure aperiam iusto quasi cumque </p>
+    </div>
 </div>
-<div>
-    <table class="center-table">
-        <% data.forEach(film => { %>
-        <tr>
-            <td class="center-text"><%= film.title %></td>
-        </tr>
-    <% }); %>
+
+<div id="elokuva">
+    <div id="prev" onclick="loadPrev()"><img class="vasen_nappi" id="logo" src="/img/next.png"></div>
+
+    <div id="no-films-message" style="display: none; text-align: center; margin-top: 20px;">Valitse elokuva</div>
+    <table class="center-table" id="film-table"></table>
+    <div id="next" onclick="loadNext()"><img id="logo" src="/img/next.png"></div>
+</div>
+<div id="film"></div>
     
-</table>
-</div>
+
+
+<script src="/lisaa/script.js"></script>
+
 
 <%- include('partials/footer') %>

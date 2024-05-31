@@ -1,140 +1,525 @@
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
-body{
-    background:#373435;
-}
-/*? header */
-#nav{
-text-align: center;
-}
-.header{
-    display:flex;
-    gap: 33%;
-    padding: 30px 30px 0px 30px;
-   
-    /* border: solid red 1px; */
+
+body {
+    background: #373435;
 }
 
-#hae{
+#nav {
+    text-align: center;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30%;
+    margin: 30px;
+    padding: 30px 30px 0px 30px;
+}
+
+#hae {
     display: flex;
     align-items: end;
     justify-content: end;
-    padding-top:15px ;
-   
-    
+    padding-top: 15px;
 }
+
 .custom-button {
-    background: none; 
+    background: none;
     border: none;
     height: 40px;
-    cursor: pointer; 
- 
-  
+    cursor: pointer;
 }
 
 .custom-img {
     width: auto;
-    height:auto; 
-
+    height: auto;
 }
 
-.header #nav{
+.header #nav {
     display: flex;
     gap: 99%;
     margin-top: 50px;
     margin-bottom: 0px;
-    
- 
+    justify-content: center;
+    align-items: center;
 }
-.header #nav a{
-    color:white;
+
+.header #nav a {
+    color: white;
     font-size: 20px;
     text-decoration: none;
-   
-    
 }
 
 a:hover {
     text-shadow: 2px 2px 5px rgb(255, 255, 255);
     background: #20aad8;
-} 
+}
 
-
-input{
+#etsi{
     width: 180px;
     margin-right: 5px;
-    background: none; 
-    border: none; 
-    outline: none; 
-    padding: 5px; 
-    font-size: 16px; 
+    background: none;
+    border: none;
+    outline: none;
+    padding: 5px;
+    font-size: 16px;
     border-bottom: 2px solid rgb(250, 250, 250);
     color: white;
 }
-input:hover{
+
+#etsi:hover {
     border-bottom: 2px solid #20aad8;
-
 }
 
-#logo{
+#logo {
     height: 70px;
- 
-    
-
-}
-button{
-    height: 100px;
-    width: 20px;
 }
 
-#osta{
-display: flex;
-justify-content: end;
-margin-top: 5vh;
-margin-right: 15vh;
-
+#osta {
+    display: flex;
+    justify-content: end;
+    margin-top: 5vh;
+    margin-right: 15vh;
 }
 
-
-
-#tiedot{
+#tiedot {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 17%;
-    margin-bottom: 23vh;
-
+    margin-bottom: 0vh;
+    margin-top: 18px;
 }
 
-#tiedot img{
-    width: 45vh;
-    height: 45vh;
-    
+#tiedot img {
+    width: 30vh;
+    height: 30vh;
 }
-#tiedot p{
+
+#tiedot p {
     width: 50vh;
-    height: 50vh;
-    color:white ;
+    height: 30vh;
+    color: white;
 }
 
-.center-table {
+/* ? index.ejs elokuvat  */
+#elokuva {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20vh 0;
+}
+tr{
+    background-color:#373435;
+    width: 55vh;
+    border: solid rgb(255, 255, 255) 10px;
+    border-bottom:solid rgb(255, 255, 255) 50px;
+}
+.film-checkbox{
+    margin-left:13vh ;
+    margin-top: 25vh;
+    margin-right: 20px;
+}
+
+span{
+    color:black;
+   
+}
+
+#film-table {
+    display: flex;
+    gap: 100px;
+    height: 30vh;
+
+}
+
+#prev, #next {
+    cursor: pointer;
+}
+
+.vasen_nappi {
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+
+/* ?kassa */
+#osta h3 {
+    margin-top: 15px;
+    color: #20aad8;
+}
+
+#selectedFilms {
+    font-size: 10px;
+}
+
+#ota img {
+    width: 45px;
+    transition: 4s;
+    height: 45px;
+}
+
+#ota img:hover {
+    width: 50px;
+    margin-left: 55px;
+    transition: 2s;
+    height: 40px;
+}
+
+#center-table tr {
+    border: 20px solid red;
+}
+
+/* ?osta.ejs */
+#osta-elokuva {
+    border: solid 3px #20aad8;
+    width: 50vh;
+    height: 30vh;
+    margin-left: 10vh;
+}
+
+.film-container {
+    display: none;
+}
+
+/* ? osta.ejs*/
+#kassa1{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-top: 17vh;
+
+
+}
+#kassa2{
+    width: 50vh;
+}
+#film-pos{
+   
+    display: flex;
+   
+    margin-bottom: 20px;
+    color: white ;
+    padding-top: 2px;
+    gap: 20px;
+}
+
+#maksa{
+    display:flex;
+    justify-content: center;
+    align-items:center;
+}
+#poista img{
+    width: 35px;
+    transition: 1s;
+}
+#poista img:hover{
+    width: 40px;
+    transition: 1s;
+}
+.maksa {
+    background-color: #20aad8;
+    border-radius: 100px;
+    box-shadow: rgba(32, 170, 216, .2) 0 -25px 18px -14px inset,
+                rgba(32, 170, 216, .15) 0 1px 2px,
+                rgba(32, 170, 216, .15) 0 2px 4px,
+                rgba(32, 170, 216, .15) 0 4px 8px,
+                rgba(32, 170, 216, .15) 0 8px 16px,
+                rgba(32, 170, 216, .15) 0 16px 32px;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+    font-family: CerebriSans-Regular, -apple-system, system-ui, Roboto, sans-serif;
+    padding: 7px 20px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 250ms;
+    border: 0;
+    font-size: 16px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.maksa:hover {
+    box-shadow: rgba(32, 170, 216, .35) 0 -25px 18px -14px inset,
+                rgba(32, 170, 216, .25) 0 1px 2px,
+                rgba(32, 170, 216, .25) 0 2px 4px,
+                rgba(32, 170, 216, .25) 0 4px 8px,
+                rgba(32, 170, 216, .25) 0 8px 16px,
+                rgba(32, 170, 216, .25) 0 16px 32px;
+    transform: scale(1.05) rotate(-1deg);
+  }
+
+/* ?  yhteistiedot.ejs*/
+
+#ytiedot{
+    margin: 20px;
+    text-align: center;
+    color: #20aad8;
+}
+#tab{
+display: flex;
+align-items: center;
+justify-content: center;
+}
+#tab td{
+    display: block;
+}
+/* ? hakutulos.ejs */
+.content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.elokuva{
+   color: #20aad8;
+   font-size: 20px;
+    margin-top: 10vh;
+   
+    width: 40vh;
+}
+
+/* ?footer.ejs */
+footer {
+    width: 100%;
+    height: 35vh;
+    margin-top: 10vh;
+}
+
+#footer-raja {
+    width: 185vh;
+    height: 10px;
+    margin-bottom: 10vh;
     margin-left: auto;
     margin-right: auto;
-    border-collapse: collapse; /* Optional: for better table styling */
+    border: solid #20aad8 5px;
+    border-radius: 20px;
 }
 
-/* Center the text within the td */
-.center-text {
+#content {
+    margin-left: 15vh;
+    margin-right: 15vh;
+}
+
+#footer-logo img {
+    height: 17vh;
+
+}
+#yhteisT{
+text-align: end;
+margin-bottom: 4vh;
+margin-top: -17vh;
+margin-right: 5vh;
+    
+}
+
+#yhteisT h3{
+    margin-top: 2px;
+    color: red
+        
+}
+#selectedFilms {
+    border: #20aad8 solid 1px;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: white;
+}
+#lisaa {
+    background-color: #20aad8;
+    border-radius: 100px;
+    box-shadow: rgba(32, 170, 216, .2) 0 -25px 18px -14px inset,
+                rgba(32, 170, 216, .15) 0 1px 2px,
+                rgba(32, 170, 216, .15) 0 2px 4px,
+                rgba(32, 170, 216, .15) 0 4px 8px,
+                rgba(32, 170, 216, .15) 0 8px 16px,
+                rgba(32, 170, 216, .15) 0 16px 32px;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+    font-family: CerebriSans-Regular, -apple-system, system-ui, Roboto, sans-serif;
+    padding: 7px 20px;
     text-align: center;
-    vertical-align: middle; /* Ensures vertical centering */
-    height: 50px;
-    color: white ; /* Example height, adjust as needed */
+    text-decoration: none;
+    transition: all 250ms;
+    border: 0;
+    font-size: 16px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
 }
 
-/* Optional: add border for better visibility */
-table, th, td {
-    border: 1px solid black;
+#lisaa:hover {
+    box-shadow: rgba(32, 170, 216, .35) 0 -25px 18px -14px inset,
+                rgba(32, 170, 216, .25) 0 1px 2px,
+                rgba(32, 170, 216, .25) 0 2px 4px,
+                rgba(32, 170, 216, .25) 0 4px 8px,
+                rgba(32, 170, 216, .25) 0 8px 16px,
+                rgba(32, 170, 216, .25) 0 16px 32px;
+    transform: scale(1.05) rotate(-1deg);
+  }
+
+
+
+  @media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .header #nav {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    #hae {
+        justify-content: center;
+        padding-top: 15px;
+        
+    }
+
+    #tiedot {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    #tiedot img, #tiedot p {
+        width: 80%;
+        max-width: 300px;
+    }
+/* ?elkuvat*/
+    #elokuva {
+        flex-direction: column;
+        gap: 20px;
+        justify-content: center;
+        align-items: center;
+        
+    }
+    tr{
+        background-color:#373435;
+        width: 20vh;
+        border: solid rgb(255, 255, 255) 10px;
+        /* border-bottom:solid rgb(255, 255, 255) 50px; */
+    }
+    #film-table {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    #kassa1 {
+        flex-direction: column;
+        margin-top: 17vh;
+    }
+    .film-checkbox checkbox{
+        margin-left:15vh ; 
+        margin-top: 50vh;
+        margin-right: 20px; 
+
+        
+     }
+     
+     span{
+        color:white;
+        margin-left: 10px;
+        font-size: 10px;
+     
+       
+    }
+    
+#next {
+
+   margin-top: 73vh;
 }
+    #film-pos {
+        flex-direction: column;
+        gap: 20px;
+    } 
+
+    .content {
+        flex-direction: column;
+    }
+
+    .elokuva {
+        width: 80%;
+        max-width: 300px;
+    }
+
+    #osta-elokuva, #kassa2 {
+        width: 80%;
+        max-width: 300px;
+    }
+
+    footer {
+        padding-top:vh ;
+        margin-top: 5vh;
+    }
+    #footer-raja {
+        width: 25vh;
+        height: 10px;
+        margin-bottom: 10vh;
+        margin-left: auto;
+        margin-right: auto;
+        border: solid #20aad8 5px;
+        border-radius: 20px;
+    }
+
+    
+
+
+#tiedot img {
+    width: 20vh;
+    height: 20vh;
+    margin-top: 25px;
+}
+
+#tiedot p {
+    margin-top: 2vh;
+    width: 30vh;
+    height: 30vh;
+    color: white;
+    margin-bottom: -20px;
+}
+
+/* ?yhteistidot */
+#ytiedot{
+  margin-top: 15vh;
+    text-align: center;
+    color: #20aad8;
+   ;
+    
+}
+.tiedot-text-class{
+    margin-bottom: 15vh;
+}
+/* ? pieni muokkaukset */
+#lisaa{
+ margin-left: 10vh;
+}
+.elokuva p{
+    margin-left: 6vh;
+}
+#film-pos label{
+    margin-left: 8vh;
+}
+.custom-button img{
+    margin-left: 1vh;
+}
+#poista img{
+    margin-left: 17vh;
+
+}
+#yhteisT{
+    text-align: center;
+    
+ margin-right: 0;
+     
+        margin-top: 17vh;
+        
+            
+    
+    }
+  }

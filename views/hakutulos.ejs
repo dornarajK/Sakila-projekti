@@ -1,0 +1,14 @@
+<%- include('partials/header') %>
+<div class="content">
+    <% autot.forEach(auto => { %>
+        <div class="elokuva">
+            <p><%= auto.title %></p>
+            <form action="/lisaaKauppaan" method="post">
+                <input type="hidden" id="val" name="film" value='<%= JSON.stringify({ id: auto.film_id, title: auto.title }) %>'>
+<br>
+                <button id="lisaa" type="submit">Lisää kauppaan</button>
+            </form>
+        </div>
+    <% }); %>
+</div>
+<%- include('partials/footer') %>
