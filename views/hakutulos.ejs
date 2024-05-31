@@ -1,11 +1,14 @@
 <%- include('partials/header') %>
 <div class="content">
-    <h1>Hakutulokset</h1>
-    <p>Löytyi <%= lukumaara %> tulosta haulle "<%= nimi %>":</p>
-    <ul>
-        <% autot.forEach(auto => { %>
-            <li><%= auto.title %></li>
-        <% }); %>
-    </ul>
+    <% autot.forEach(auto => { %>
+        <div class="elokuva">
+            <p><%= auto.title %></p>
+            <form action="/lisaaKauppaan" method="post">
+                <input type="hidden" id="val" name="film" value='<%= JSON.stringify({ id: auto.film_id, title: auto.title }) %>'>
+<br>
+                <button id="lisaa" type="submit">Lisää kauppaan</button>
+            </form>
+        </div>
+    <% }); %>
 </div>
 <%- include('partials/footer') %>

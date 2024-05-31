@@ -1,5 +1,33 @@
 <%- include('partials/header') %>
-<div id="osta-elokuva">
-    <h1>valitus elokuvat:</h1>
+<div id="kassa1">
+<div id="kassa2">
+
+    
+    <% selectedFilms.forEach(film => { %>
+        <div>
+            <form action="/poista" method="post" style="display: inline;">
+                <input type="hidden" name="filmId" value="<%= film.id %>">
+                <dir id="film-pos">
+                    <label><%= film.title %></label>  
+                    <div id="pos">
+                        <button type="submit"id="poista" class="custom-button">
+                            <img alt="Submit" id="poista" src="/img/remove.png">
+                        </button>
+                    </div>      
+                </dir>
+            </form>
+        </div>
+    <% }); %>
+    <div id="maksa">
+
+        <button class="maksa" onclick="maksa()">Maksa</button>
+    </div>
+</div>
 </div>
 <%- include('partials/footer') %>
+
+<script src="/lisaa/maksa.js"></script>
+
+
+
+
