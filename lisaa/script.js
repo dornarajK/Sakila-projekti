@@ -1,6 +1,6 @@
 let offset = 0;
 const limit = 3;
-let selectedFilms = new Set(); 
+let selectedFilms = new Set(); // Use a Set to keep track of selected films
 
 document.addEventListener('DOMContentLoaded', () => {
     loadFilms();
@@ -20,11 +20,12 @@ function loadFilms() {
 
                 const checkbox = document.createElement('input');
                 checkbox.type = 'checkbox';
-                checkbox.value = JSON.stringify({ id: film.film_id, title: film.title });
+                checkbox.value = JSON.stringify({ id: film.film_id, title: film.title }); // Store as JSON string
                 checkbox.name = 'selectedFilms';
                 checkbox.className = 'film-checkbox';
                 
 
+                // If the film is already selected, mark the checkbox as checked
                 if (selectedFilms.has(checkbox.value)) {
                     checkbox.checked = true;
                 }
@@ -79,7 +80,7 @@ function updateSelectedFilms() {
         selectedFilmsDiv.appendChild(listItem);
     });
 
-   
+    // Also update the hidden inputs to submit the selected films
     selectedFilmsDiv.querySelectorAll('input').forEach(input => input.remove());
     selectedFilms.forEach(film => {
         const input = document.createElement('input');
