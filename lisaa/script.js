@@ -1,6 +1,6 @@
 let offset = 0;
 const limit = 3;
-let selectedFilms = new Set(); // Use a Set to keep track of selected films
+const selectedFilms = new Set(); // Käytetään Setiä valittujen elokuvien seurantaan
 
 document.addEventListener('DOMContentLoaded', () => {
     loadFilms();
@@ -20,12 +20,11 @@ function loadFilms() {
 
                 const checkbox = document.createElement('input');
                 checkbox.type = 'checkbox';
-                checkbox.value = JSON.stringify({ id: film.film_id, title: film.title }); // Store as JSON string
+                checkbox.value = JSON.stringify({ id: film.film_id, title: film.title }); // Tallennetaan JSON-muodossa
                 checkbox.name = 'selectedFilms';
                 checkbox.className = 'film-checkbox';
-                
 
-                // If the film is already selected, mark the checkbox as checked
+                // Jos elokuva on jo valittu, merkitse valintaruutu valituksi
                 if (selectedFilms.has(checkbox.value)) {
                     checkbox.checked = true;
                 }
@@ -48,33 +47,10 @@ function loadFilms() {
                 table.appendChild(row);
             });
 
-<<<<<<< HEAD
-        //? napin esintuminen 
-            const nextButton = document.getElementById('next');
-            const prevButton = document.getElementById('prev');
-            
-            if (offset === 0) {
-                prevButton.style.display = 'none';
-            } else {
-                prevButton.style.display = 'block'; 
-            }
-            
-            if (data.length < limit) {
-                nextButton.style.display = 'none'; 
-            } else {
-                nextButton.style.display = 'block'; 
-            }
-=======
-            updateSelectedFilms();
+            updatePagination(data); // Päivitetään sivutuksen ohjausnäppäimet
 
-            const nextButton = document.getElementById('next');
-            const prevButton = document.getElementById('prev');
-
-            prevButton.style.display = offset === 0 ? 'none' : 'block';
-            nextButton.style.display = data.length < limit ? 'none' : 'block';
->>>>>>> sakilaKehitys
         })
-        .catch(error => console.error('Error loading films:', error));
+        .catch(error => console.error('Elokuvien lataamisessa tapahtui virhe:', error));
 }
 
 function loadNext() {
@@ -98,7 +74,7 @@ function updateSelectedFilms() {
         selectedFilmsDiv.appendChild(listItem);
     });
 
-    // Also update the hidden inputs to submit the selected films
+    // Päivitetään myös piilotetut input-kentät valittujen elokuvien lähettämistä varten
     selectedFilmsDiv.querySelectorAll('input').forEach(input => input.remove());
     selectedFilms.forEach(film => {
         const input = document.createElement('input');
@@ -107,4 +83,12 @@ function updateSelectedFilms() {
         input.value = film;
         selectedFilmsDiv.appendChild(input);
     });
+}
+
+function updatePagination(data) {
+    const nextButton = document.getElementById('next');
+    const prevButton = document.getElementById('prev');
+
+    prevButton.style.display = offset === 0 ? 'none' : 'block';
+    nextButton.style.display = data.length < limit ? 'none' : 'block';
 }

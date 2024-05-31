@@ -1,26 +1,16 @@
 <%- include('partials/header') %>
-<<<<<<< HEAD
 
-<h1>Hakutulos</h1>
-<p>Löydettyjen elokuvien lukumäärä: <%= lukumaara %></p>
-<ul>
-    <% autot.forEach(function(auto) { %>
-        <li><%= auto.title %></li>
-    <% }); %>
-</ul>
-
-=======
 <div class="content">
     <% autot.forEach(auto => { %>
         <div class="elokuva">
             <p><%= auto.title %></p>
             <form action="/lisaaKauppaan" method="post">
                 <input type="hidden" id="val" name="film" value='<%= JSON.stringify({ id: auto.film_id, title: auto.title }) %>'>
-<br>
+                <br>
                 <button id="lisaa" type="submit">Lisää kauppaan</button>
             </form>
         </div>
     <% }); %>
 </div>
->>>>>>> sakilaKehitys
+
 <%- include('partials/footer') %>

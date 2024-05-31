@@ -15,7 +15,6 @@ app.use('/img', express.static('image'));
 app.use('/inc', express.static('includes'));
 app.use('/lisaa', express.static('lisaa'));
 
-
 app.get('/favicon.ico', (req, res) => res.status(204).end());
 
 app.get('/', (req, res) => {
@@ -173,6 +172,7 @@ app.post('/poista', (req, res) => {
         });
     });
 });
+
 app.get('/osta-check', (req, res) => {
     const filePath = path.join(__dirname, 'data', 'kauppa.json');
 
@@ -214,7 +214,8 @@ app.post('/lisaaKauppaan', (req, res) => {
         } else {
             try {
                 kauppaData = JSON.parse(data);
-            } catch (err) {
+            } catch (err
+            ) {
                 console.error('Error parsing JSON:', err);
                 res.status(500).send('Server error');
                 return;
