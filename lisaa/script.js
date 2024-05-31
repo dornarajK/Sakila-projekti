@@ -1,5 +1,6 @@
 let offset = 0;
 const limit = 3;
+let selectedFilms = new Set(); // Use a Set to keep track of selected films
 
 document.addEventListener('DOMContentLoaded', () => {
     loadFilms();
@@ -16,11 +17,38 @@ function loadFilms() {
                 const row = document.createElement('tr');
                 const cell = document.createElement('td');
                 cell.className = 'center-text';
-                cell.textContent = film.title;
+
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.value = JSON.stringify({ id: film.film_id, title: film.title }); // Store as JSON string
+                checkbox.name = 'selectedFilms';
+                checkbox.className = 'film-checkbox';
+                
+
+                // If the film is already selected, mark the checkbox as checked
+                if (selectedFilms.has(checkbox.value)) {
+                    checkbox.checked = true;
+                }
+
+                checkbox.addEventListener('change', () => {
+                    if (checkbox.checked) {
+                        selectedFilms.add(checkbox.value);
+                    } else {
+                        selectedFilms.delete(checkbox.value);
+                    }
+                    updateSelectedFilms();
+                });
+
+                const filmName = document.createElement('span');
+                filmName.textContent = film.title;
+                cell.appendChild(checkbox);
+                cell.appendChild(filmName);
+
                 row.appendChild(cell);
                 table.appendChild(row);
             });
 
+<<<<<<< HEAD
         //? napin esintuminen 
             const nextButton = document.getElementById('next');
             const prevButton = document.getElementById('prev');
@@ -36,6 +64,15 @@ function loadFilms() {
             } else {
                 nextButton.style.display = 'block'; 
             }
+=======
+            updateSelectedFilms();
+
+            const nextButton = document.getElementById('next');
+            const prevButton = document.getElementById('prev');
+
+            prevButton.style.display = offset === 0 ? 'none' : 'block';
+            nextButton.style.display = data.length < limit ? 'none' : 'block';
+>>>>>>> sakilaKehitys
         })
         .catch(error => console.error('Error loading films:', error));
 }
@@ -48,4 +85,26 @@ function loadNext() {
 function loadPrev() {
     offset = Math.max(0, offset - limit);
     loadFilms();
+}
+
+function updateSelectedFilms() {
+    const selectedFilmsDiv = document.getElementById('selectedFilms');
+    selectedFilmsDiv.innerHTML = '';
+
+    selectedFilms.forEach(film => {
+        const filmObj = JSON.parse(film);
+        const listItem = document.createElement('div');
+        listItem.textContent = filmObj.title;
+        selectedFilmsDiv.appendChild(listItem);
+    });
+
+    // Also update the hidden inputs to submit the selected films
+    selectedFilmsDiv.querySelectorAll('input').forEach(input => input.remove());
+    selectedFilms.forEach(film => {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'selectedFilms';
+        input.value = film;
+        selectedFilmsDiv.appendChild(input);
+    });
 }
