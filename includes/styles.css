@@ -163,12 +163,12 @@ span{
     height: 45px;
 }
 
-#ota img:hover {
+/* #ota img:hover {
     width: 50px;
     margin-left: 55px;
     transition: 2s;
     height: 40px;
-}
+} */
 
 #center-table tr {
     border: 20px solid red;

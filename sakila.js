@@ -67,6 +67,15 @@ app.get('/load-more', (req, res) => {
     });
 });
 
+
+const generateUniqueId = (kauppaData) => {
+    let newId;
+    do {
+        newId = Math.floor(Math.random() * 1000000).toString(); 
+    } while (kauppaData.some(film => film.id === newId));
+    return newId;
+};
+
 app.post('/osta', (req, res) => {
     const selectedFilms = req.body.selectedFilms;
 
@@ -99,6 +108,7 @@ app.post('/osta', (req, res) => {
 
         films.forEach(film => {
             if (!kauppaData.some(f => f.id === film.id)) {
+                film.id = generateUniqueId(kauppaData);
                 kauppaData.push(film);
             }
         });
@@ -138,6 +148,10 @@ app.get('/osta', (req, res) => {
     });
 });
 
+app.listen(3000, () => {
+    console.log('Server is running on port 3000');
+});
+//!
 app.post('/poista', (req, res) => {
     const filmIdToRemove = req.body.filmId;
 
@@ -173,13 +187,14 @@ app.post('/poista', (req, res) => {
     });
 });
 
+
 app.get('/osta-check', (req, res) => {
     const filePath = path.join(__dirname, 'data', 'kauppa.json');
 
     fs.readFile(filePath, (err, data) => {
         if (err) {
             if (err.code === 'ENOENT') {
-                return res.json([]);  
+                return res.json([]); 
             } else {
                 console.error('Error reading file:', err);
                 return res.status(500).json({ error: 'Server error' });
@@ -199,7 +214,13 @@ app.get('/osta-check', (req, res) => {
 });
 
 app.post('/lisaaKauppaan', (req, res) => {
-    const film = JSON.parse(req.body.film);
+    let film;
+    try {
+        film = JSON.parse(req.body.film);
+    } catch (err) {
+        console.error('Error parsing film data:', err);
+        return res.status(400).send('Invalid film data');
+    }
 
     const filePath = path.join(__dirname, 'data', 'kauppa.json');
 
@@ -214,15 +235,15 @@ app.post('/lisaaKauppaan', (req, res) => {
         } else {
             try {
                 kauppaData = JSON.parse(data);
-            } catch (err
-            ) {
+            } catch (err) {
                 console.error('Error parsing JSON:', err);
                 res.status(500).send('Server error');
                 return;
             }
         }
 
-        if (!kauppaData.some(f => f.id === film.film_id)) {
+        if (!kauppaData.some(f => f.id === film.id)) {
+            film.id = generateUniqueId(kauppaData); 
             kauppaData.push(film);
         }
 
