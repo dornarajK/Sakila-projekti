@@ -1,0 +1,161 @@
+@media (max-width: 768px) {
+   
+  .header {
+      flex-direction: column;
+      gap: 15px;
+  }
+
+  .header #nav {
+      flex-direction: column;
+      gap: 15px;
+  }
+
+  #hae {
+      justify-content: center;
+      padding-top: 15px;
+      
+  }
+
+  #tiedot {
+      flex-direction: column;
+      gap: 15px;
+  }
+
+  #tiedot img, #tiedot p {
+      width: 80%;
+      max-width: 300px;
+  }
+/* ?elkuvat*/
+  #elokuva {
+      flex-direction: column;
+      gap: 20px;
+      justify-content: center;
+      align-items: center;
+      
+  }
+  tr{
+      background-color:#373435;
+      width: 20vh;
+      border: solid rgb(255, 255, 255) 10px;
+      /* border-bottom:solid rgb(255, 255, 255) 50px; */
+  }
+  #film-table {
+      flex-direction: column;
+      gap: 20px;
+  }
+
+  #kassa1 {
+      flex-direction: column;
+      margin-top: 17vh;
+  }
+  .film-checkbox checkbox{
+      margin-left:15vh ; 
+      margin-top: 50vh;
+      margin-right: 20px; 
+     
+
+      
+   }
+   
+   
+   span{
+      color:white;
+      margin-left: 10px;
+      font-size: 10px;
+   
+     
+  }
+  
+#next {
+
+ margin-top: 73vh;
+}
+  #film-pos {
+      flex-direction: column;
+      gap: 20px;
+  } 
+
+  .content {
+      flex-direction: column;
+  }
+
+  .elokuva {
+      width: 80%;
+      max-width: 300px;
+  }
+
+  #osta-elokuva, #kassa2 {
+      width: 80%;
+      max-width: 300px;
+  }
+
+  footer {
+      padding-top:vh ;
+      margin-top: 5vh;
+  }
+  #footer-raja {
+      width: 25vh;
+      height: 10px;
+      margin-bottom: 10vh;
+      margin-left: auto;
+      margin-right: auto;
+      border: solid #20aad8 5px;
+      border-radius: 20px;
+  }
+
+  
+
+
+#tiedot img {
+  width: 20vh;
+  height: 20vh;
+  margin-top: 25px;
+}
+
+#tiedot p {
+  margin-top: 2vh;
+  width: 30vh;
+  height: 30vh;
+  color: white;
+  margin-bottom: -20px;
+}
+
+/* ?yhteistidot */
+#ytiedot{
+margin-top: 15vh;
+  text-align: center;
+  color: #20aad8;
+ ;
+  
+}
+.tiedot-text-class{
+  margin-bottom: 15vh;
+}
+/* ? pieni muokkaukset */
+#lisaa{
+margin-left: 10vh;
+}
+.elokuva p{
+  margin-left: 6vh;
+}
+#film-pos label{
+  margin-left: 8vh;
+}
+.custom-button img{
+  margin-left: 1vh;
+}
+#poista img{
+  margin-left: 17vh;
+
+}
+#yhteisT{
+  text-align: center;
+  
+margin-right: 0;
+   
+      margin-top: 17vh;
+      
+          
+  
+  }
+}

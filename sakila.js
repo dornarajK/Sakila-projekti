@@ -20,6 +20,7 @@ app.get('/favicon.ico', (req, res) => res.status(204).end());
 app.get('/', (req, res) => {
     const query = 'SELECT film_id, title FROM film ORDER BY film_id LIMIT 3';
 
+
     connection.query(query, (err, results) => {
         if (err) {
             console.error('Error executing query:', err);
@@ -51,12 +52,19 @@ app.post('/lisaa', (req, res) => {
         });
     });
 });
-
 app.get('/load-more', (req, res) => {
     const offset = parseInt(req.query.offset) || 0;
     const limit = parseInt(req.query.limit) || 3;
-    const query = 'SELECT film_id, title FROM film ORDER BY film_id LIMIT ?, ?';
-
+    const query = `
+    SELECT f.film_id, f.title, 
+    SUBSTRING_INDEX(GROUP_CONCAT(CONCAT(a.first_name, ' ', a.last_name) ORDER BY a.actor_id SEPARATOR ', '), ', ', 2) AS actor_names
+    FROM film f
+    JOIN film_actor fa ON f.film_id = fa.film_id
+    JOIN actor a ON fa.actor_id = a.actor_id
+    GROUP BY f.film_id
+    ORDER BY f.film_id
+    LIMIT ?, ?`;
+    
     connection.query(query, [offset, limit], (err, results) => {
         if (err) {
             console.error('Error executing query:', err);
@@ -66,6 +74,22 @@ app.get('/load-more', (req, res) => {
         res.json(results);
     });
 });
+
+
+// app.get('/load-more', (req, res) => {
+//     const offset = parseInt(req.query.offset) || 0;
+//     const limit = parseInt(req.query.limit) || 3;
+//     const query = 'SELECT film_id, title FROM film ORDER BY film_id LIMIT ?, ?';
+
+//     connection.query(query, [offset, limit], (err, results) => {
+//         if (err) {
+//             console.error('Error executing query:', err);
+//             res.status(500).send('Server error');
+//             return;
+//         }
+//         res.json(results);
+//     });
+// });
 
 
 const generateUniqueId = (kauppaData) => {

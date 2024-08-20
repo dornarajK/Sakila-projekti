@@ -5,7 +5,6 @@ const selectedFilms = new Set(); // Käytetään Setiä valittujen elokuvien seu
 document.addEventListener('DOMContentLoaded', () => {
     loadFilms();
 });
-
 function loadFilms() {
     fetch(`/load-more?offset=${offset}&limit=${limit}`)
         .then(response => response.json())
@@ -16,15 +15,38 @@ function loadFilms() {
             data.forEach(film => {
                 const row = document.createElement('tr');
                 const cell = document.createElement('td');
+                const  span= document.createElement('span');
                 cell.className = 'center-text';
+
+            // Create checkbox
 
                 const checkbox = document.createElement('input');
                 checkbox.type = 'checkbox';
-                checkbox.value = JSON.stringify({ id: film.film_id, title: film.title }); // Tallennetaan JSON-muodossa
+                checkbox.value = JSON.stringify({ id: film.film_id, title: film.title });
                 checkbox.name = 'selectedFilms';
+                span.className = 'spann';
                 checkbox.className = 'film-checkbox';
 
-                // Jos elokuva on jo valittu, merkitse valintaruutu valituksi
+                checkbox.id = `checkbox-${film.film_id}`
+
+                // Create label
+              
+
+
+                const label = document.createElement('label');
+                label.className = 'film-lable';
+                label.htmlFor = checkbox.id;
+
+                span.textContent = `Add`; 
+            
+
+                label.textContent = `${film.title}`; 
+               
+                cell.appendChild(checkbox);
+                cell.appendChild(label);
+                cell.appendChild(span);
+                row.appendChild(cell);
+
                 if (selectedFilms.has(checkbox.value)) {
                     checkbox.checked = true;
                 }
@@ -38,20 +60,25 @@ function loadFilms() {
                     updateSelectedFilms();
                 });
 
-                const filmName = document.createElement('span');
-                filmName.textContent = film.title;
+                // const filmName = document.createElement('div');
+                const actor = document.createElement('div');
+
+                actor.className = "actors";
+                actor.textContent = `Actor Names: ${film.actor_names}`;
+
                 cell.appendChild(checkbox);
-                cell.appendChild(filmName);
+              
+                cell.appendChild(actor);
 
                 row.appendChild(cell);
                 table.appendChild(row);
             });
 
-            updatePagination(data); // Päivitetään sivutuksen ohjausnäppäimet
-
+            updatePagination(data);
         })
         .catch(error => console.error('Elokuvien lataamisessa tapahtui virhe:', error));
 }
+
 
 function loadNext() {
     offset += limit;
