@@ -27,7 +27,7 @@ app.get('/', (req, res) => {
             res.status(500).send('Server error');
             return;
         }
-        res.render('index', { 
+        res.render('index', {
             data: results
         });
     });
@@ -64,7 +64,7 @@ app.get('/load-more', (req, res) => {
     GROUP BY f.film_id
     ORDER BY f.film_id
     LIMIT ?, ?`;
-    
+
     connection.query(query, [offset, limit], (err, results) => {
         if (err) {
             console.error('Error executing query:', err);
@@ -76,26 +76,10 @@ app.get('/load-more', (req, res) => {
 });
 
 
-// app.get('/load-more', (req, res) => {
-//     const offset = parseInt(req.query.offset) || 0;
-//     const limit = parseInt(req.query.limit) || 3;
-//     const query = 'SELECT film_id, title FROM film ORDER BY film_id LIMIT ?, ?';
-
-//     connection.query(query, [offset, limit], (err, results) => {
-//         if (err) {
-//             console.error('Error executing query:', err);
-//             res.status(500).send('Server error');
-//             return;
-//         }
-//         res.json(results);
-//     });
-// });
-
-
 const generateUniqueId = (kauppaData) => {
     let newId;
     do {
-        newId = Math.floor(Math.random() * 1000000).toString(); 
+        newId = Math.floor(Math.random() * 1000000).toString();
     } while (kauppaData.some(film => film.id === newId));
     return newId;
 };
@@ -218,7 +202,7 @@ app.get('/osta-check', (req, res) => {
     fs.readFile(filePath, (err, data) => {
         if (err) {
             if (err.code === 'ENOENT') {
-                return res.json([]); 
+                return res.json([]);
             } else {
                 console.error('Error reading file:', err);
                 return res.status(500).json({ error: 'Server error' });
@@ -267,7 +251,7 @@ app.post('/lisaaKauppaan', (req, res) => {
         }
 
         if (!kauppaData.some(f => f.id === film.id)) {
-            film.id = generateUniqueId(kauppaData); 
+            film.id = generateUniqueId(kauppaData);
             kauppaData.push(film);
         }
 
@@ -283,10 +267,40 @@ app.post('/lisaaKauppaan', (req, res) => {
     });
 });
 
+//!Elokuva.ejs sivusto
+
+
+app.get('/elokuvat', (req, res) => {
+    const query = `
+    SELECT film.film_id, film.title, 
+           GROUP_CONCAT(DISTINCT category.name SEPARATOR ', ') AS categories,
+           SUBSTRING_INDEX(GROUP_CONCAT(DISTINCT actor.first_name, ' ', actor.last_name SEPARATOR ', '), ', ', 2) AS actors
+    FROM film
+    JOIN film_category ON film.film_id = film_category.film_id
+    JOIN category ON film_category.category_id = category.category_id
+    JOIN film_actor ON film.film_id = film_actor.film_id
+    JOIN actor ON film_actor.actor_id = actor.actor_id
+    GROUP BY film.film_id, film.title
+ `;
+ 
+
+    connection.query(query, (err, results) => {
+        if (err) {
+            console.error('Tietokantakysely epäonnistui:', err);
+            res.status(500).send('Tietokantakysely epäonnistui');
+            return;
+        }
+
+        res.render('elokuvat', { films: results });
+    });
+});
+
+
+
+
 app.get('/yhteistidot', (req, res) => {
     res.render('yhteistidot');
 });
-
 app.listen(port, host, () => {
     console.log(`Server is running on http://${host}:${port}`);
 });

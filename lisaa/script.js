@@ -1,6 +1,6 @@
 let offset = 0;
 const limit = 3;
-const selectedFilms = new Set(); // Käytetään Setiä valittujen elokuvien seurantaan
+const selectedFilms = new Set(); 
 
 document.addEventListener('DOMContentLoaded', () => {
     loadFilms();
@@ -18,7 +18,6 @@ function loadFilms() {
                 const  span= document.createElement('span');
                 cell.className = 'center-text';
 
-            // Create checkbox
 
                 const checkbox = document.createElement('input');
                 checkbox.type = 'checkbox';
@@ -29,7 +28,7 @@ function loadFilms() {
 
                 checkbox.id = `checkbox-${film.film_id}`
 
-                // Create label
+               
               
 
 
@@ -37,7 +36,7 @@ function loadFilms() {
                 label.className = 'film-lable';
                 label.htmlFor = checkbox.id;
 
-                span.textContent = `Add`; 
+                span.textContent = `Lisää`; 
             
 
                 label.textContent = `${film.title}`; 
@@ -64,7 +63,7 @@ function loadFilms() {
                 const actor = document.createElement('div');
 
                 actor.className = "actors";
-                actor.textContent = `Actor Names: ${film.actor_names}`;
+                actor.textContent = `Näyttelijöiden nimet: ${film.actor_names}`;
 
                 cell.appendChild(checkbox);
               
@@ -119,3 +118,8 @@ function updatePagination(data) {
     prevButton.style.display = offset === 0 ? 'none' : 'block';
     nextButton.style.display = data.length < limit ? 'none' : 'block';
 }
+
+
+
+
+// !

@@ -1,0 +1,30 @@
+<%- include('partials/header') %>
+
+<div class="category-buttons">
+  <button data-category="All">Kaikki</button>
+  <button data-category="New">Uudet</button>
+  <button data-category="Horror">Kauhu</button>
+  <button data-category="Family">Perhe</button>
+  <button data-category="Action">Toiminta</button>
+</div>
+
+<form id="film-form" method="POST" action="/osta" class="kes">
+  <button id="laheta" type="submit">Kassalle:<i class="fa-solid fa-cart-shopping" style=" color: rgb(255, 255, 255);"></i></button>
+
+  <div id="film-container" class="film-grid">
+      <% films.forEach(film => { %>
+          <div class="film-item" data-category="<%= film.categories %>">
+            <label>Lisää</label>
+            <input type="checkbox" class="film-checkbox" name="selectedFilms" value='<%= JSON.stringify(film) %>'>
+            <br>
+            <h3 style="border-bottom: solid 1.2px;"><%= film.title %></h3>
+            
+            <p><strong>Näyttelijöiden nimet:</strong> <%= film.actors %></p>
+
+        </div>
+      <% }); %>
+  </div>
+</form>
+
+<script src="/lisaa/script2.js"></script>
+<%- include('partials/footer') %>
