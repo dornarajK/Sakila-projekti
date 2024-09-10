@@ -1,19 +1,29 @@
-Overview
+
+# Sakila
 This application is a film management system built using Node.js with the Express.js framework. It allows users to:
 
-View a list of films.
-Search for films by title.
-Add films to a cart and view the cart.
-Remove films from the cart.
-View detailed film information including categories and actors.
-Features
-Film Listing: Display a list of films with pagination.
-Search: Search films by title.
-Cart Management: Add films to a cart, view the cart, and remove films from it.
-Detailed Film Information: View film details including categories and actors.
-Prerequisites
-Node.js (v12 or later)
-MySQL Database
+
+
+
+
+ - View a list of films.
+ - Search for films by title.
+ - Add films to a cart and view the cart.
+ - Remove films from the cart.
+ - View detailed film information including categories and actors.
+
+
+## Features
+
+- Film Listing: Display a list of films with pagination.
+- Search: Search films by title.
+- Cart Management: Add films to a cart, view the cart, and remove films from it.
+- Detailed Film Information: View film details including categories and actors.
+
+
+## Prerequisites
+* Node.js 
+* MySQL Database
 
 ![kuva1](https://github.com/user-attachments/assets/b8d8f92e-9e60-4331-bbf3-dc8b8c99c4b4)
 ![kuva2](https://github.com/user-attachments/assets/ae266265-06a3-49d1-8ae1-c834650e918c)
